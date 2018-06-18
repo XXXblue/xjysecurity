@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="xjysecurityapp" />
+        <module name="xjysecuritybrowser" />
+        <module name="xjysecuritycore" />
+        <module name="xjysecuritydemo" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="xjysecurity" target="1.8" />
+      <module name="xjysecurityapp" target="1.8" />
+      <module name="xjysecuritybrowser" target="1.8" />
+      <module name="xjysecuritycore" target="1.8" />
+      <module name="xjysecuritydemo" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

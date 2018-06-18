@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/xjysecurity.iml" filepath="$PROJECT_DIR$/xjysecurity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xjysecurityapp/xjysecurityapp.iml" filepath="$PROJECT_DIR$/xjysecurityapp/xjysecurityapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xjysecuritybrowser/xjysecuritybrowser.iml" filepath="$PROJECT_DIR$/xjysecuritybrowser/xjysecuritybrowser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xjysecuritycore/xjysecuritycore.iml" filepath="$PROJECT_DIR$/xjysecuritycore/xjysecuritycore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xjysecuritydemo/xjysecuritydemo.iml" filepath="$PROJECT_DIR$/xjysecuritydemo/xjysecuritydemo.iml" />
+    </modules>
+  </component>
+</project>
