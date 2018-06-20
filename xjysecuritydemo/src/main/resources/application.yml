@@ -26,3 +26,17 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
 server:
   port: 8080
+
+xjy:
+  security:
+    code:
+      image:
+        length: 6
+        width: 100
+        url: /user
+#xjy:
+#  security:
+#    browser:
+    #配置这些东西没个/和有/区别很大，没/它会保持原有的部分url，有/它是新的url
+#      loginPage: /demo-signin.html
+#      loginType: REDIRECT
