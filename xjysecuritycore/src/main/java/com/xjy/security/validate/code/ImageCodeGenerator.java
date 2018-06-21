@@ -1,6 +1,7 @@
 package com.xjy.security.validate.code;
 
 import com.xjy.security.properties.SecurityProperties;
+
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.context.request.ServletWebRequest;
 
@@ -11,7 +12,7 @@ import java.util.Random;
 /**
  * @Author: XBlue
  * @Date: Create in 2018/6/2012:04
- * @Description:    验证码图片生成的具体实现
+ * @Description:    验证码图片生成的具体实现类
  * @Modified By:
  */
 

@@ -1,14 +1,12 @@
-package com.xjy.security.filter;
+package com.xjy.security.authentication.mobile;
 
 import com.xjy.security.controller.ValidateCodeController;
 import com.xjy.security.exception.ValidateCodeException;
 import com.xjy.security.properties.SecurityProperties;
-import com.xjy.security.validate.code.ImageCode;
+import com.xjy.security.validate.code.ValidateCode;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
-import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.social.connect.web.HttpSessionSessionStrategy;
 import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.util.AntPathMatcher;
@@ -31,7 +29,7 @@ import java.util.Set;
  * @Description: 图形验证码校验过滤器，以后记住了，凡事校验都是在过滤器中进行的,你会发现其实filter需要用到的配置和handler都是set进来的不是注入的。
  * @Modified By:
  */
-public class ValidateCodeFilter extends OncePerRequestFilter implements InitializingBean{
+public class SmsCodeFilter extends OncePerRequestFilter implements InitializingBean{
 
     private AuthenticationFailureHandler authenticationFailureHandler;
 
@@ -48,13 +46,13 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
     @Override
     public void afterPropertiesSet() throws ServletException {
         super.afterPropertiesSet();
-        if(!StringUtils.isBlank(securityProperties.getCode().getImage().getUrl())){
-            String[] configUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(securityProperties.getCode().getImage().getUrl(),",");
+        if(!StringUtils.isBlank(securityProperties.getCode().getSms().getUrl())){
+            String[] configUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(securityProperties.getCode().getSms().getUrl(),",");
             for(String url:configUrls){
                 urls.add(url);
             }
         }
-        urls.add("/authentication/form");
+        urls.add("/authentication/mobile");
     }
 
     @Override
@@ -73,7 +71,7 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
             }catch(ValidateCodeException e){
 //                失败了走哪里，这里指定走自定义的失败处理器
                 authenticationFailureHandler.onAuthenticationFailure(httpServletRequest,httpServletResponse,e);
-//                终止不用往下走了
+//                这个return很关键，就是不让代码往下走，不然会发生多次response.getwriter的错误
                 return;
             }
         }
@@ -82,23 +80,23 @@ public class ValidateCodeFilter extends OncePerRequestFilter implements Initiali
 
     private void validate(ServletWebRequest request) throws ServletRequestBindingException {
         //session中的code值
-        ImageCode codeInSession = (ImageCode) sessionStrategy.getAttribute(request, ValidateCodeController.SESSION_KEY);
+        ValidateCode codeInSession = (ValidateCode) sessionStrategy.getAttribute(request, ValidateCodeController.SMS_KEY);
         //表单传上来的code值
-        String codeInRequest = ServletRequestUtils.getStringParameter(request.getRequest(),"imageCode");
+        String codeInRequest = ServletRequestUtils.getStringParameter(request.getRequest(),"smsCode");
         if(StringUtils.isBlank(codeInRequest)){
-            throw new ValidateCodeException("验证码的值不能为空");
+            throw new ValidateCodeException("手机验证码的值不能为空");
         }
         if(codeInSession == null){
-            throw new ValidateCodeException("验证码不存在");
+            throw new ValidateCodeException("手机验证码不存在");
         }
         if(codeInSession.isExpried()){
-            sessionStrategy.removeAttribute(request,ValidateCodeController.SESSION_KEY);
-            throw new ValidateCodeException("验证码已过期");
+            sessionStrategy.removeAttribute(request,ValidateCodeController.SMS_KEY);
+            throw new ValidateCodeException("手机验证码已过期");
         }
         if(!StringUtils.equals(codeInRequest,codeInSession.getCode())){
-            throw new ValidateCodeException("验证码不匹配");
+            throw new ValidateCodeException("手机验证码不匹配");
         }
-        sessionStrategy.removeAttribute(request,ValidateCodeController.SESSION_KEY);
+        sessionStrategy.removeAttribute(request,ValidateCodeController.SMS_KEY);
     }
 
     public AuthenticationFailureHandler getAuthenticationFailureHandler() {

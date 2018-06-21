@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 /**
  * @Author: XBlue
  * @Date: Create in 2018/6/1916:18
- * @Description: 考虑到验证码公用，放到core中，这里是子类图片验证码，要存图片，扩展之前的ValidateCode
+ * @Description: 考虑到验证码公用，放到core中，这里是子类图片验证码，要存图片，扩展之前的父类验证码
  * @Modified By:
  */
 public class ImageCode  extends ValidateCode {

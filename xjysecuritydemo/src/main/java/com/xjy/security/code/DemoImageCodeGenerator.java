@@ -12,7 +12,7 @@ import org.springframework.web.context.request.ServletWebRequest;
  * @Description:    打开component就能让覆盖测试生效
  * @Modified By:
  */
-@Component("imageCodeGenerator")
+//@Component("imageCodeGenerator")
 @Slf4j
 public class DemoImageCodeGenerator implements ValidateCodeGenerator {
     @Override

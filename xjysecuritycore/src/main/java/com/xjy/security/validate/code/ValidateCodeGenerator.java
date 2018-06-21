@@ -5,9 +5,9 @@ import org.springframework.web.context.request.ServletWebRequest;
 /**
  * @Author: XBlue
  * @Date: Create in 2018/6/2012:04
- * @Description:    验证码图片生成的接口
+ * @Description:    所有验证码生成的接口
  * @Modified By:
  */
 public interface ValidateCodeGenerator {
-    ImageCode generator(ServletWebRequest servletWebRequest);
+    ValidateCode generator(ServletWebRequest servletWebRequest);
 }

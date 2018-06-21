@@ -40,5 +40,5 @@ public class ImmocAuthenctiationFailHandler extends SimpleUrlAuthenticationFailu
         }else{
             super.onAuthenticationFailure(httpServletRequest,httpServletResponse,e);
         }
-    }
+}
 }

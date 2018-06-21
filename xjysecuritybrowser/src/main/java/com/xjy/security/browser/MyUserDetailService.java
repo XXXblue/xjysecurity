@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
  * @Description:  自定义用户不要使用spring默认给你的用户名密码，==================核心===============
  * @Modified By:
  */
+//只要把自己定义的userdetailservice声明为spring容器管理的类，它就会覆盖默认的userdetailService，全局注入都是使用这个
 @Component
 @Slf4j
 public class MyUserDetailService implements UserDetailsService {

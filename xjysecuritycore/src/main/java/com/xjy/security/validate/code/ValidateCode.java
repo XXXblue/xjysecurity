@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 
 /**
  * @author zhailiang ,因为验证码有很多种，但是码和超时是不会变的，抽出父类，供子类继承
- *
+ *由于短信验证码和验证码的父类一样就能满足需求，故用父类验证码类充当短信验证码存在session，图片验证码需要扩展父类验证码才能存session
  */
 public class ValidateCode {
 	
